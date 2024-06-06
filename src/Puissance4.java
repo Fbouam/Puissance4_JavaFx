@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -60,6 +61,14 @@ public class Puissance4 extends Application{
      * le champs où le joueur2 renseigne son nom
      */
     private TextField tfJoueur2;
+    /**
+     * la liste déroulante permettant le choix d'une couleur
+     */
+    private ComboBox<String> comboBoxJoueur1;
+    /**
+     * la liste déroulante permettant le choix d'une couleur
+     */
+    private ComboBox<String> comboBoxJoueur2;
 
     
     @Override
@@ -165,12 +174,12 @@ public class Puissance4 extends Application{
         choix_couleur.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         gpParamPartie.add(choix_couleur, 0, 3);
 
-        ComboBox<String> comboBoxJoueur1 = new ComboBox<>();
+        this.comboBoxJoueur1 = new ComboBox<>();
         comboBoxJoueur1.getItems().addAll("","Rouge", "Jaune");
         gpParamPartie.add(new Label("Joueur 1"), 0, 4);
         gpParamPartie.add(comboBoxJoueur1, 1, 4);
 
-        ComboBox<String> comboBoxJoueur2 = new ComboBox<>();
+        this.comboBoxJoueur2 = new ComboBox<>();
         comboBoxJoueur2.getItems().addAll("","Rouge", "Jaune");
         gpParamPartie.add(new Label("Joueur 2"), 0, 5);
         gpParamPartie.add(comboBoxJoueur2, 1, 5);
@@ -193,8 +202,29 @@ public class Puissance4 extends Application{
             }
         });
 
-        accueil.getChildren().add(gpParamPartie);
+        //Boutons lancer partie et Reset
+        HBox hboxButtons = new HBox(15);
+        hboxButtons.setPadding(new Insets(15));
+        hboxButtons.setAlignment(Pos.CENTER);
+
+        Button btnReset = new Button("Reset");
+        btnReset.setOnAction(e -> reset());
+        hboxButtons.getChildren().add(btnReset);
+
+        Button btnLancerPartie = new Button("Lancer Partie");
+        hboxButtons.getChildren().add(btnLancerPartie);
+
+        accueil.getChildren().addAll(gpParamPartie, hboxButtons);
         return accueil;
+    }
+
+    private void reset(){
+        this.tfJoueur1.clear();
+        this.tfJoueur2.clear();
+        this.comboBoxJoueur1.getSelectionModel().clearSelection();
+        this.comboBoxJoueur2.getSelectionModel().clearSelection();
+        this.comboBoxJoueur1.getItems().setAll("", "Rouge", "Jaune");
+        this.comboBoxJoueur2.getItems().setAll("", "Rouge", "Jaune");
     }
 
     /**
@@ -205,6 +235,8 @@ public class Puissance4 extends Application{
         this.boutonMaison.setDisable(true);
         this.boutonParametres.setDisable(false);
     }
+
+
 
 
     /**
