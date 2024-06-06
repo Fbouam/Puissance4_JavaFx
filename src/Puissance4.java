@@ -1,14 +1,12 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -60,6 +58,15 @@ public class Puissance4 extends Application{
      * le champs où le joueur2 renseigne son nom
      */
     private TextField tfJoueur2;
+        /**
+     * la liste déroulante permettant le choix d'une couleur
+     */
+    private ComboBox<String> comboBoxJoueur1;
+    /**
+     * la liste déroulante permettant le choix d'une couleur
+     */
+    private ComboBox<String> comboBoxJoueur2;
+
 
     
     @Override
@@ -193,8 +200,32 @@ public class Puissance4 extends Application{
             }
         });
 
+        //Boutons lancer partie et Reset
+        HBox hboxButtons = new HBox(15);
+        hboxButtons.setPadding(new Insets(15));
+        hboxButtons.setAlignment(Pos.CENTER);
+
+        Button btnReset = new Button("Reset");
+        btnReset.setOnAction(e -> reset());
+        hboxButtons.getChildren().add(btnReset);
+
+        Button btnLancerPartie = new Button("Lancer Partie");
+        hboxButtons.getChildren().add(btnLancerPartie);
+
+        accueil.getChildren().addAll(gpParamPartie, hboxButtons);
+
+
         accueil.getChildren().add(gpParamPartie);
         return accueil;
+    }
+
+    private void reset(){
+        this.tfJoueur1.clear();
+        this.tfJoueur2.clear();
+        this.comboBoxJoueur1.getSelectionModel().clearSelection();
+        this.comboBoxJoueur2.getSelectionModel().clearSelection();
+        this.comboBoxJoueur1.getItems().setAll("", "Rouge", "Jaune");
+        this.comboBoxJoueur2.getItems().setAll("", "Rouge", "Jaune");
     }
 
     /**
@@ -215,29 +246,6 @@ public class Puissance4 extends Application{
         chrono.setCollapsible(false);
         return chrono;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
