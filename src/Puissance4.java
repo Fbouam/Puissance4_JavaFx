@@ -3,13 +3,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -61,7 +58,6 @@ public class Puissance4 extends Application{
      * le champs où le joueur2 renseigne son nom
      */
     private TextField tfJoueur2;
-    /**
      * la liste déroulante permettant le choix d'une couleur
      */
     private ComboBox<String> comboBoxJoueur1;
@@ -215,6 +211,9 @@ public class Puissance4 extends Application{
         hboxButtons.getChildren().add(btnLancerPartie);
 
         accueil.getChildren().addAll(gpParamPartie, hboxButtons);
+
+
+        accueil.getChildren().add(gpParamPartie);
         return accueil;
     }
 
@@ -247,29 +246,6 @@ public class Puissance4 extends Application{
         chrono.setCollapsible(false);
         return chrono;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
