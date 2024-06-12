@@ -4,8 +4,14 @@
     // Pour plus d'informations, visitez : https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
-        
+        {
+            "type": "java",
+            "name": "Puissance4",
+            "request": "launch",
+            "vmArgs": "--module-path /usr/share/openjfx/lib/ --add-modules javafx.controls,javafx.fxml",
+            "mainClass": "Puissance4",
+            "projectName": "Puissance4_JavaFx_f6cafa65"
+        },
         {
             "type": "java",
             "name": "Current File",
