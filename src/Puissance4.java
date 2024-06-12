@@ -58,6 +58,7 @@ public class Puissance4 extends Application{
      * le champs où le joueur2 renseigne son nom
      */
     private TextField tfJoueur2;
+    /**
      * la liste déroulante permettant le choix d'une couleur
      */
     private ComboBox<String> comboBoxJoueur1;
@@ -65,6 +66,14 @@ public class Puissance4 extends Application{
      * la liste déroulante permettant le choix d'une couleur
      */
     private ComboBox<String> comboBoxJoueur2;
+    /**
+     * Le nombre de lignes de la grille de jeu
+     */
+    private static final int LIGNES = 6;
+    /**
+     * Le nombre de colonnes de la grille de jeu
+     */
+    private static final int COLONNES = 7;
 
     
     @Override
@@ -212,8 +221,6 @@ public class Puissance4 extends Application{
 
         accueil.getChildren().addAll(gpParamPartie, hboxButtons);
 
-
-        accueil.getChildren().add(gpParamPartie);
         return accueil;
     }
 
@@ -235,8 +242,14 @@ public class Puissance4 extends Application{
         this.boutonParametres.setDisable(false);
     }
 
-
-
+    /**
+     * Affiche la page de jeu
+     */
+    // public void modeJeu() {
+    //     this.panelCentral.setCenter(fenetreJeu());
+    //     this.boutonMaison.setDisable(false);
+    //     this.boutonParametres.setDisable(true);
+    // }
 
     /**
      * @return le panel du chronomètre
