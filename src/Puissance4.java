@@ -2,7 +2,9 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -13,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -217,6 +220,7 @@ public class Puissance4 extends Application{
         hboxButtons.getChildren().add(btnReset);
 
         Button btnLancerPartie = new Button("Lancer Partie");
+        btnLancerPartie.setOnAction(new ControleurLancerPartie(this));
         hboxButtons.getChildren().add(btnLancerPartie);
 
         accueil.getChildren().addAll(gpParamPartie, hboxButtons);
@@ -243,13 +247,64 @@ public class Puissance4 extends Application{
     }
 
     /**
+     * @return la fenêtre de jeu avec la grille de jeu et les contrôles associés
+     */
+    private Pane fenetreJeu() {
+        VBox jeu = new VBox(15);
+        jeu.setPadding(new Insets(15));
+
+        GridPane gpGrilleJeu = new GridPane();
+        gpGrilleJeu.setVgap(5);
+        gpGrilleJeu.setHgap(5);
+        gpGrilleJeu.setAlignment(Pos.CENTER);
+        gpGrilleJeu.setBackground(new Background(new BackgroundFill(Color.DARKBLUE, new CornerRadii(20), new Insets(0,150,0,150))));
+
+        for (int i = 0; i < LIGNES; i++) {
+            for (int j = 0; j < COLONNES; j++) {
+                Button cell = new Button();
+                cell.setPrefSize(60, 60);
+                cell.setStyle("-fx-background-color: lightgrey; -fx-border-color: black; -fx-background-radius: 30;");
+                gpGrilleJeu.add(cell, j, i);
+            }        
+        }
+
+        // Chronomètre panel
+        TitledPane chronoPane = this.leChrono();
+
+        // Boutons et autres contrôles
+        HBox hboxControls = new HBox(15);
+        hboxControls.setPadding(new Insets(15));
+        hboxControls.setAlignment(Pos.CENTER);
+
+        Button btnRejouer = new Button("Rejouer");
+        // btnRejouer.setOnAction(e -> someRejouerAction());
+        hboxControls.getChildren().add(btnRejouer);
+
+        Button btnQuitter = new Button("Quitter");
+        // btnQuitter.setOnAction(e -> someQuitterAction());
+        hboxControls.getChildren().add(btnQuitter);
+
+        jeu.getChildren().addAll(gpGrilleJeu, chronoPane, hboxControls);
+
+        return jeu;
+    }
+
+    public Alert popUpPartieEnCours(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"La partie est en cours!\n Etes-vous sûr de l'interrompre ?", ButtonType.YES, ButtonType.NO);
+        alert.setTitle("Attention");
+        alert.setHeaderText("ATTENTION !");
+        return alert;
+    }
+
+    
+    /**
      * Affiche la page de jeu
      */
-    // public void modeJeu() {
-    //     this.panelCentral.setCenter(fenetreJeu());
-    //     this.boutonMaison.setDisable(false);
-    //     this.boutonParametres.setDisable(true);
-    // }
+    public void modeJeu() {
+        this.panelCentral.setCenter(fenetreJeu());
+        this.boutonMaison.setDisable(false);
+        this.boutonParametres.setDisable(true);
+     }
 
     /**
      * @return le panel du chronomètre
