@@ -1,25 +1,25 @@
-public class Jeton {
-    private char symbole; 
-    private Joueur proprietaire; 
+// public class Jeton {
+//     private String couleur; 
+//     private Joueur proprietaire; 
 
-    public Jeton(char symbole, Joueur proprietaire) {
-        this.symbole = symbole;
-        this.proprietaire = proprietaire;
-    }
+//     public Jeton(String couleur, Joueur proprietaire) {
+//         this.couleur = couleur;
+//         this.proprietaire = proprietaire;
+//     }
 
-    public char getSymbole() {
-        return symbole;
-    }
+//     public String getCouleur() {
+//         return couleur;
+//     }
 
-    public Joueur getProprietaire() {
-        return proprietaire;
-    }
+//     public Joueur getProprietaire() {
+//         return proprietaire;
+//     }
 
-    @Override
-    public String toString() {
-        return "Jeton{" +
-                "symbole=" + symbole +
-                ", proprietaire=" + proprietaire +
-                '}';
-    }
-}
+//     @Override
+//     public String toString() {
+//         return "Jeton{" +
+//                 "couleur='" + couleur + '\'' +
+//                 ", proprietaire=" + proprietaire +
+//                 '}';
+//     }
+// }

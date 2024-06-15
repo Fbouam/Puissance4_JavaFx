@@ -1,36 +1,32 @@
 public class Joueur {
     private String nom;
-    private char symbole; 
-    private int score;
+    private String couleur;
 
-    public Joueur(String nom, char symbole) {
+    public Joueur(String nom, String couleur) {
         this.nom = nom;
-        this.symbole = symbole;
-        this.score = 0;
+        this.couleur = couleur;
     }
 
     public String getNom() {
         return nom;
     }
 
-    public char getSymbole() {
-        return symbole;
+    public String getCouleur() {
+        return couleur;
     }
 
-    public int getScore() {
-        return score;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public void incrementerScore() {
-        this.score++;
+    public void setCouleur(String couleur) {
+        this.couleur = couleur;
     }
 
     @Override
     public String toString() {
         return "Joueur{" +
                 "nom='" + nom + '\'' +
-                ", symbole=" + symbole +
-                ", score=" + score +
-                '}';
+                ", couleur='" + couleur + '\'' +'}';
     }
 }
